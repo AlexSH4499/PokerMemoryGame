@@ -2,14 +2,16 @@ import javax.swing.JFrame;
 
 public class EqualPairLevel extends EasyLevel {
 
-	protected EqualPairLevel(TurnsTakenCounterLabel validTurnTime, JFrame mainFrame) {
-		super(validTurnTime, mainFrame);
+	protected EqualPairLevel(ScoreCounterLabel score,TurnsTakenCounterLabel validTurnTime, JFrame mainFrame) {
+		super(score,validTurnTime, mainFrame);
 		super.turnsTakenCounter.setDifficultyModeLabel("Medium Level");
 	}
 
 	@Override
 	protected boolean addToTurnedCardsBuffer(Card card) {
+		
 		this.turnedCardsBuffer.add(card);
+		
 		if(this.turnedCardsBuffer.size() == getCardsToTurnUp())
 		{
 			// there are two cards faced up
@@ -27,7 +29,8 @@ public class EqualPairLevel extends EasyLevel {
 	}
 
 	@Override
-	protected boolean turnUp(Card card) {
+	protected boolean turnUp(Card card) 
+	{
 		// the card may be turned
 		if(this.turnedCardsBuffer.size() < getCardsToTurnUp()) 
 		{
@@ -38,7 +41,8 @@ public class EqualPairLevel extends EasyLevel {
 	}
 
 	@Override
-	protected String getMode() {
+	protected String getMode() 
+	{
 		// TODO Auto-generated method stub
 		return "MediumMode";
 	}

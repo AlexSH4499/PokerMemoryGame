@@ -34,8 +34,9 @@ public abstract class GameLevel implements ActionListener
 	protected int cardsPerRow = 4;								// Number of cards per row in grid
 	protected int rowsPerGrid = 16;								// Number of card rows in Grid
 	protected int cardsToTurnUp = 2;							// Number of cards to turn up on each turn
-	protected int totalUniqueCards = rowsPerGrid * cardsPerRow;	// Total number of cards in the grid
-
+	protected int totalUniqueCards = rowsPerGrid * cardsPerRow;// Total number of cards in the grid
+	protected ScoreCounterLabel scoreLabel;
+	
 	protected String cardNames[] = 
 		{   "2c", "2d", "2h", "2s", "3c", "3d", "3h", "3s", "4c", "4d", "4h", "4s",
 			"5c", "5d", "5h", "5s", "6c", "6d", "6h", "6s", "7c", "7d", "7h", "7s",
@@ -52,8 +53,9 @@ public abstract class GameLevel implements ActionListener
 	 *
 	 * @param validTurnTime reference to turn counter label in main program window
 	 */
-	protected GameLevel(TurnsTakenCounterLabel counterLabel, int cardsToGuess, JFrame mainFrame)
+	protected GameLevel(ScoreCounterLabel score, TurnsTakenCounterLabel counterLabel, int cardsToGuess, JFrame mainFrame)
 	{
+		this.scoreLabel = score;
 		this.turnsTakenCounter = counterLabel;
 		this.turnedCardsBuffer= new Vector<Card>(cardsToGuess);
 		this.mainFrame = mainFrame;
@@ -163,10 +165,14 @@ public abstract class GameLevel implements ActionListener
 
 		for (int i =0; i< this.grid.size();i++)
 			if(!this.grid.get(i).isFaceUp()) return false;
-
-
 		return true;
+//		for(int i = 0; i < this.grid.size();i++)
+//			if(this.grid.get(i).isFaceUp())
+//				return true;
+//		return false;
 	}
+	
+
 
 	protected abstract String getMode() ;
 }

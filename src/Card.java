@@ -169,4 +169,23 @@ public class Card extends JLabel implements MouseListener
 		// forget any previous mouse press
 		this.mousePressedOnMe = false;
 	}
+	
+	//Compares two cards' suits
+	//@param c being the target card
+	protected boolean sameSuit(Card c)
+	{
+		if(this.suit == c.getSuit())
+			return true;
+		
+		return false;
+	}
+	
+	//Compares two cards' ranks
+	//@param c being the target card
+	protected boolean sameRank(Card c)
+	{
+		if(this.rank == c.getRank())
+			return true;
+		return false;
+	}
 }

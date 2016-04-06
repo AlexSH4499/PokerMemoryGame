@@ -19,6 +19,7 @@ public class MemoryGame implements ActionListener {
 	private Container mainContentPane;			// frame that holds card field and turn counter
 	private TurnsTakenCounterLabel turnCounterLabel;
 	private GameLevel difficulty;
+	private ScoreCounterLabel scoreCounterLabel;
 
 	/**
 	 * Make a JMenuItem, associate an action command and listener, add to menu
@@ -60,6 +61,7 @@ public class MemoryGame implements ActionListener {
 		newMenuItem("Easy Level", difficultyMenu, this);
 		newMenuItem("Equal Pair Level", difficultyMenu, this);
 		newMenuItem("Same Rank Trio Level", difficultyMenu, this);
+		newMenuItem("Flush Rank Level",difficultyMenu,this);
 
 		// Help menu
 		JMenu helpMenu = new JMenu("Help");
@@ -83,6 +85,7 @@ public class MemoryGame implements ActionListener {
 			if(e.getActionCommand().equals("Easy Level")) newGame("easy");
 			else if(e.getActionCommand().equals("Equal Pair Level")) newGame("medium");
 			else if(e.getActionCommand().equals("Same Rank Trio Level")) newGame("trio");
+			else if(e.getActionCommand().equals("Flush Level")) newGame("Flush Level");
 			else if(e.getActionCommand().equals("How To Play")) showInstructions();
 			else if(e.getActionCommand().equals("About")) showAbout();
 			else if(e.getActionCommand().equals("Exit")) System.exit(0);
@@ -122,20 +125,32 @@ public class MemoryGame implements ActionListener {
 	 */
 	public void newGame(String difficultyMode) throws IOException
 	{
-		// reset the turn counter to zero
+		// reset the turn counter & score counter to zero
 		this.turnCounterLabel = new TurnsTakenCounterLabel();
-
+		this.scoreCounterLabel = new ScoreCounterLabel();
+		
 		// make a new card field with cards, and add it to the window
 
 		if(difficultyMode.equalsIgnoreCase("easy")) {
-			this.difficulty = new EasyLevel(this.turnCounterLabel, this.mainFrame);
+			this.difficulty = new EasyLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
+			scoreCounterLabel.reset();
+	
 		}
 		else if(difficultyMode.equalsIgnoreCase("medium")){
-			this.difficulty = new EqualPairLevel(this.turnCounterLabel, this.mainFrame);
+			this.difficulty = new EqualPairLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
+			scoreCounterLabel.reset();
+		
 		}
 
 		else if(difficultyMode.equalsIgnoreCase("trio")){
-			this.difficulty = new RankTrioLevel(this.turnCounterLabel, this.mainFrame);
+			this.difficulty = new RankTrioLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
+			scoreCounterLabel.reset();
+			
+		}
+		else if(difficultyMode.equalsIgnoreCase("Flush Level"))
+		{
+			this.difficulty = new FlushLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
+			scoreCounterLabel.reset();
 		}
 
 		else {
@@ -143,7 +158,8 @@ public class MemoryGame implements ActionListener {
 		}
 
 		this.turnCounterLabel.reset();
-
+		this.scoreCounterLabel.reset();
+		
 		// clear out the content pane (removes turn counter label and card field)
 		this.mainContentPane.removeAll();
 
@@ -151,6 +167,9 @@ public class MemoryGame implements ActionListener {
 
 		// add the turn counter label back in again
 		this.mainContentPane.add(this.turnCounterLabel);
+		
+		//add the points counter label back in again
+		this.mainContentPane.add(this.scoreCounterLabel);
 
 		// show the window (in case this is the first game)
 		this.mainFrame.setVisible(true);
@@ -201,7 +220,7 @@ public class MemoryGame implements ActionListener {
 	}
 
 	/**
-	 * Shows an dialog box with information about the program
+	 * Shows a dialog box with information about the program
 	 */
 	private void showAbout()
 	{

@@ -14,6 +14,7 @@ public class GameManager {
 		// make an instance of the main game class
 		MemoryGame instance = new MemoryGame();
 		instance.newGame("easy");
+		if(instance.gameOver())System.out.println("Game Over");
 		
 	}
 
