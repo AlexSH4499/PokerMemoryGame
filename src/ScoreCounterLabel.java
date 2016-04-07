@@ -6,29 +6,31 @@ public class ScoreCounterLabel extends TurnsTakenCounterLabel
 	 * 
 	 */
 	private static final long serialVersionUID = -7144363845887524044L;
-	private long score =0;
-	private String DESCRIPTION;
+	private int score =0;
+	private String DESCRIPTION = "Score:";
 	
 	public ScoreCounterLabel()
 	{
-		super.reset();
+		super();
+		reset();
 	}
 	
-	public ScoreCounterLabel(long score)
+	public ScoreCounterLabel(int score)
 	{
-		super.reset();
+		reset();
 		this.score += score;
 	}
 	
 	//@SuppressWarnings("unused")
-	private void update()
+	
+	public void update()
 	{
-		setText(DESCRIPTION + Long.toString(this.score));
-		setHorizontalTextPosition(JLabel.RIGHT);
+		setText(DESCRIPTION + Integer.toString(this.score));
+		setHorizontalTextPosition(JLabel.NORTH_EAST);
 		
 	}
 	
-	protected void addScore(long increment)
+	protected void addScore(int increment)
 	{
 		this.score += increment;
 		update();

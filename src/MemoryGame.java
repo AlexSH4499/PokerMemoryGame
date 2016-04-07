@@ -145,7 +145,6 @@ public class MemoryGame implements ActionListener {
 			this.scoreCounterLabel = new ScoreCounterLabel(10);
 			this.difficulty = new EqualPairLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
 		
-		
 		}
 
 		else if(difficultyMode.equalsIgnoreCase("trio")){

@@ -74,7 +74,7 @@ public class StraightLevel extends FlushLevel
 	@Override
 	protected boolean turnUp(Card card) {
 		// the card may be turned
-		if(this.turnedCardsBuffer.size() < 1) 
+		if(this.turnedCardsBuffer.size() < 5) 
 		{
 			return this.addToTurnedCardsBuffer(card);
 		}
