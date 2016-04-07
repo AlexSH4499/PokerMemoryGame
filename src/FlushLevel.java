@@ -59,7 +59,7 @@ public class FlushLevel extends GameLevel {
 			Card otherCard5 = (Card) this.turnedCardsBuffer.get(4);
 			
 			if((card.sameSuit(otherCard1) && (card.sameSuit(otherCard2)) && (card.sameSuit(otherCard3)) && (card.sameSuit(otherCard4)) && (card.sameSuit(otherCard5)))){ 
-			
+				
 				// Three cards match, so remove them from the list (they will remain face up)
 				this.turnedCardsBuffer.clear();
 				this.scoreLabel.addScore(100 + card.getNum() *3);//We need to fix this so we can multiply but card Rank not memory num

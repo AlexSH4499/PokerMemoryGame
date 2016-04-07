@@ -61,7 +61,7 @@ public class MemoryGame implements ActionListener {
 		newMenuItem("Easy Level", difficultyMenu, this);
 		newMenuItem("Equal Pair Level", difficultyMenu, this);
 		newMenuItem("Same Rank Trio Level", difficultyMenu, this);
-		newMenuItem("Flush Rank Level",difficultyMenu,this);
+		newMenuItem("Flush Level",difficultyMenu,this);
 		newMenuItem("Straight Level",difficultyMenu,this);
 		newMenuItem("Combo Level",difficultyMenu,this);
 		
