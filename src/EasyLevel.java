@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -5,7 +6,8 @@ import javax.swing.JFrame;
 
 public class EasyLevel extends GameLevel {
 
-	protected EasyLevel(ScoreCounterLabel score, TurnsTakenCounterLabel validTurnTime, JFrame mainFrame) {
+	protected EasyLevel(ScoreCounterLabel score, TurnsTakenCounterLabel validTurnTime, JFrame mainFrame)
+	{
 		super(score,validTurnTime, 2, mainFrame);
 		this.turnsTakenCounter.setDifficultyModeLabel("Easy Level");
 		this.cardsPerRow = 4;
@@ -89,6 +91,26 @@ public class EasyLevel extends GameLevel {
 	protected String getMode() {
 		// TODO Auto-generated method stub
 		return "EasyMode";
+	}
+
+	@SuppressWarnings("unused")
+	private boolean movesAvailable(ArrayList<Card> c) {
+		// TODO Auto-generated method stub
+		int i =0;
+		int j =0;
+		for(Card cards: c)
+		{
+			while(j< c.size())
+			{
+			//if(cards.getRank().equalsIgnoreCase(cards.getRank())) i++;
+			if(c.get(j).getRank().equalsIgnoreCase(c.get(i).getRank()))
+				{
+					return true;
+				};
+				i++;
+			}
+		}
+		return false;
 	}
 }
 

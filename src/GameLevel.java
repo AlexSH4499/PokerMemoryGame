@@ -160,7 +160,13 @@ public abstract class GameLevel implements ActionListener
 	protected ArrayList<Card> getGrid() {
 		return this.grid;
 	}
-
+	
+	/*
+	 * Invoke when game starts and when a pair/trio/straight/flush
+	 * has occured. Checks the Card array for possible combinations, 
+	 * else, ends the current game and displays a message to player
+	 */
+	protected abstract boolean availableMoves();
 	protected boolean  gameOver(){
 
 		for (int i =0; i< this.grid.size();i++)
