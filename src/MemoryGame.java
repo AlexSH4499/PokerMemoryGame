@@ -62,7 +62,9 @@ public class MemoryGame implements ActionListener {
 		newMenuItem("Equal Pair Level", difficultyMenu, this);
 		newMenuItem("Same Rank Trio Level", difficultyMenu, this);
 		newMenuItem("Flush Rank Level",difficultyMenu,this);
-
+		newMenuItem("Straight Level",difficultyMenu,this);
+		newMenuItem("Combo Level",difficultyMenu,this);
+		
 		// Help menu
 		JMenu helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
@@ -127,30 +129,34 @@ public class MemoryGame implements ActionListener {
 	{
 		// reset the turn counter & score counter to zero
 		this.turnCounterLabel = new TurnsTakenCounterLabel();
-		this.scoreCounterLabel = new ScoreCounterLabel();
+		
 		
 		// make a new card field with cards, and add it to the window
 
 		if(difficultyMode.equalsIgnoreCase("easy")) {
+			this.scoreCounterLabel = new ScoreCounterLabel(5);
 			this.difficulty = new EasyLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
-			scoreCounterLabel.reset();
+		
 	
 		}
 		else if(difficultyMode.equalsIgnoreCase("medium")){
+			this.scoreCounterLabel = new ScoreCounterLabel(10);
 			this.difficulty = new EqualPairLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
-			scoreCounterLabel.reset();
+		
 		
 		}
 
 		else if(difficultyMode.equalsIgnoreCase("trio")){
+			this.scoreCounterLabel = new ScoreCounterLabel(15);
 			this.difficulty = new RankTrioLevel(this.scoreCounterLabel,this.turnCounterLabel, this.mainFrame);
-			scoreCounterLabel.reset();
+			
 			
 		}
 		else if(difficultyMode.equalsIgnoreCase("Flush Level"))
 		{
+			this.scoreCounterLabel = new ScoreCounterLabel(20);
 			this.difficulty = new FlushLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
-			scoreCounterLabel.reset();
+		
 		}
 
 		else {
@@ -160,7 +166,7 @@ public class MemoryGame implements ActionListener {
 		this.turnCounterLabel.reset();
 		this.scoreCounterLabel.reset();
 		
-		// clear out the content pane (removes turn counter label and card field)
+		// clear out the content pane (removes turn counter label, score label, and card field)
 		this.mainContentPane.removeAll();
 
 		this.mainContentPane.add(showCardDeck());
@@ -175,6 +181,7 @@ public class MemoryGame implements ActionListener {
 		this.mainFrame.setVisible(true);
 	}
 
+	//Something may be wrong here
 	public boolean gameOver() throws FileNotFoundException, InterruptedException{
 		return difficulty.gameOver();
 	}
@@ -225,7 +232,8 @@ public class MemoryGame implements ActionListener {
 	private void showAbout()
 	{
 		dprintln("MemoryGame.showAbout()");
-		final String ABOUTTEXT = "Game Customized at UPRM. Originally written by Mike Leonhard";
+		final String ABOUTTEXT = "Game Customized at UPRM. Originally written by Mike Leonhard."
+				+ "/n"+ "Modified by Alejandro Rodriguez and Edgardo Hernandez.";
 
 		JOptionPane.showMessageDialog(this.mainFrame, ABOUTTEXT
 				, "About Memory Game", JOptionPane.PLAIN_MESSAGE);

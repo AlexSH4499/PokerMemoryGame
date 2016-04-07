@@ -51,6 +51,7 @@ public class RankTrioLevel extends EqualPairLevel {
 			// We are uncovering the last card in this turn
 			// Record the player's turn
 			this.turnsTakenCounter.increment();
+			
 			// get the other card (which was already turned up)
 			Card otherCard1 = (Card) this.turnedCardsBuffer.get(0);
 			Card otherCard2 = (Card) this.turnedCardsBuffer.get(1);

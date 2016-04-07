@@ -35,7 +35,7 @@ public abstract class GameLevel implements ActionListener
 	protected int rowsPerGrid = 16;								// Number of card rows in Grid
 	protected int cardsToTurnUp = 2;							// Number of cards to turn up on each turn
 	protected int totalUniqueCards = rowsPerGrid * cardsPerRow;// Total number of cards in the grid
-	protected ScoreCounterLabel scoreLabel;
+	protected ScoreCounterLabel scoreLabel;						//Number of points the player has scored
 	
 	protected String cardNames[] = 
 		{   "2c", "2d", "2h", "2s", "3c", "3d", "3h", "3s", "4c", "4d", "4h", "4s",

@@ -6,7 +6,7 @@ public class ScoreCounterLabel extends TurnsTakenCounterLabel
 	 * 
 	 */
 	private static final long serialVersionUID = -7144363845887524044L;
-	private long score;
+	private long score =0;
 	private String DESCRIPTION;
 	
 	public ScoreCounterLabel()
@@ -14,7 +14,13 @@ public class ScoreCounterLabel extends TurnsTakenCounterLabel
 		super.reset();
 	}
 	
-	@SuppressWarnings("unused")
+	public ScoreCounterLabel(long score)
+	{
+		super.reset();
+		this.score += score;
+	}
+	
+	//@SuppressWarnings("unused")
 	private void update()
 	{
 		setText(DESCRIPTION + Long.toString(this.score));
@@ -25,6 +31,13 @@ public class ScoreCounterLabel extends TurnsTakenCounterLabel
 	protected void addScore(long increment)
 	{
 		this.score += increment;
+		update();
+	}
+	
+	@Override
+	public void reset()
+	{
+		this.score = 0;
 		update();
 	}
 }

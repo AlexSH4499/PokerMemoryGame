@@ -99,6 +99,7 @@ public class Card extends JLabel implements MouseListener
 		// calculate the distance from the center of the label
 		int distX = Math.abs(x - (this.getWidth() / 2));
 		int distY = Math.abs(y - (this.getHeight() / 2));
+		
 		// outside icon region
 		if(distX > this.iconWidthHalf || distY > this.iconHeightHalf )
 			return false;

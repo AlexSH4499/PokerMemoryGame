@@ -61,6 +61,7 @@ public class EasyLevel extends GameLevel {
 	protected boolean addToTurnedCardsBuffer(Card card) {
 		// add the card to the list
 		this.turnedCardsBuffer.add(card);
+		
 		// there are two cards
 		if(this.turnedCardsBuffer.size() == getCardsToTurnUp()-1) 
 		{
