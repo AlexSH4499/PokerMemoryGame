@@ -139,6 +139,18 @@ public abstract class GameLevel implements ActionListener
 	{
 		this.turnedCardsBuffer.remove(card);
 	}
+	
+	public int maxRankInBuffer(ArrayList<Card>c)
+	{	
+		int max =0;
+		for(Card cards:c)
+		{
+			if(max < Integer.parseInt(cards.getRank()))
+			max = Integer.parseInt(cards.getRank());
+		}
+		return max;
+		
+	}
 
 	/**
 	 * Invoked when timer event occurs, turns non-matching cards down

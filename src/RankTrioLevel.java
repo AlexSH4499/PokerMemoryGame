@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -41,6 +43,43 @@ public class RankTrioLevel extends EqualPairLevel {
 			this.grid.add( new Card(this, cardIcon[num], backIcon, num, rank, suit));
 		}
 	}
+	
+	/*
+	 * This method allows us to sort through a Card List
+	 * While comparing n to n+1 and n+2.
+	 * If the argument is true then the method 
+	 * @ return is True
+	 * @Param c is The ArrayList to be sorted
+	 */
+	@SuppressWarnings("unused")
+	private boolean movesAvailable(ArrayList<Card> c) {
+		
+		// Our n's
+		int i =1;
+		int j =0;
+		int k =2;
+		for(Card cards: c)//we may change this back to a standard for loop, seems unnecessary as is
+		{
+			while(j< c.size())
+			{
+
+			//If there exists at least one trio
+			//Then the return statement is true
+			if(c.get(j).getRank().equalsIgnoreCase(c.get(i).getRank()) 
+				&&	c.get(j).getRank().equalsIgnoreCase(c.get(k).getRank())	)
+			
+				{
+					return true;
+					
+				}
+				j++;
+			}
+			i+=2;
+			k+=2;
+		}
+		return false;
+	}
+
 
 	@Override
 	protected boolean addToTurnedCardsBuffer(Card card) {
@@ -59,6 +98,10 @@ public class RankTrioLevel extends EqualPairLevel {
 				// Three cards match, so remove them from the list (they will remain face up)
 				this.turnedCardsBuffer.clear();
 				this.scoreLabel.addScore(100 + card.getNum() *3);//We need to fix this so we can multiply but card Rank not memory num
+				
+				//Will only be true when there are no possible combinations available
+				//Still requires the pop-up dialogue
+				if(!this.movesAvailable(this.grid)) this.gameOver();//we need to pass the corresponding deck
 			}
 			else 
 			{

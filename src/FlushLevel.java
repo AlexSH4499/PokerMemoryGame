@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -58,16 +60,24 @@ public class FlushLevel extends GameLevel {
 			Card otherCard4 = (Card) this.turnedCardsBuffer.get(3);
 			Card otherCard5 = (Card) this.turnedCardsBuffer.get(4);
 			
-			if((card.sameSuit(otherCard1) && (card.sameSuit(otherCard2)) && (card.sameSuit(otherCard3)) && (card.sameSuit(otherCard4)) && (card.sameSuit(otherCard5)))){ 
+			if((card.sameSuit(otherCard1) 
+					&& (card.sameSuit(otherCard2)) 
+					&& (card.sameSuit(otherCard3)) 
+					&& (card.sameSuit(otherCard4))
+					&& (card.sameSuit(otherCard5)))){ 
 				
 				// Three cards match, so remove them from the list (they will remain face up)
 				this.turnedCardsBuffer.clear();
-				this.scoreLabel.addScore(100 + card.getNum() *3);//We need to fix this so we can multiply but card Rank not memory num
+				
+				this.scoreLabel.addScore(100 + Integer.parseInt(card.getRank()) *3);//We need to fix this so we can multiply but card Rank not memory num
+				if(!this.movesAvailable(this.grid))this.gameOver();//Needs the dialogue box
+				
 			}
 			else 
 			{
 				// The cards do not match, so start the timer to turn them down
 				this.turnDownTimer.start();
+				//Subtracts the argument provided from the Score Label
 				this.scoreLabel.addScore(-5);
 			}
 		
@@ -85,6 +95,48 @@ public class FlushLevel extends GameLevel {
 				}
 				// there are already the number of EasyMode (5 face up cards) in the turnedCardsBuffer
 				return false;
+	}
+	
+	/*
+	 * This method allows us to sort through a Card List
+	 * While comparing n to n+1, n+2,n+3 ,and n+4.
+	 * If the argument is true then the method 
+	 * @ return is True
+	 * @Param c is The ArrayList to be sorted
+	 */
+	@SuppressWarnings("unused")
+	private boolean movesAvailable(ArrayList<Card> c) {
+		
+		// Our n's
+		
+		int j =0;
+		int i =1;
+		int k =2;
+		int m =3;
+		int n =4;
+		for(int l =0 ; l < c.size(); l++)
+		{
+			while(j< c.size())
+			{
+
+			//If there exists at least one flush
+			//Then the return statement is true
+			if(	   c.get(j).getSuit().equalsIgnoreCase(c.get(i).getSuit()) 
+				&& c.get(j).getSuit().equalsIgnoreCase(c.get(k).getSuit())
+				&& c.get(j).getSuit().equalsIgnoreCase(c.get(m).getSuit())
+				&& c.get(j).getSuit().equalsIgnoreCase(c.get(n).getSuit()))
+				{
+					return true;
+					
+				}
+				j++;
+			}
+			i+=4;
+			k+=4;
+			m+=4;
+			n+=4;
+		}
+		return false;
 	}
 
 	@Override

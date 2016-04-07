@@ -175,7 +175,7 @@ public class Card extends JLabel implements MouseListener
 	//@param c being the target card
 	protected boolean sameSuit(Card c)
 	{
-		if(this.suit == c.getSuit())
+		if(this.suit.equalsIgnoreCase(c.getSuit()))
 			return true;
 		
 		return false;
