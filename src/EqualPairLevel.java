@@ -5,6 +5,8 @@ public class EqualPairLevel extends EasyLevel {
 	protected EqualPairLevel(ScoreCounterLabel score,TurnsTakenCounterLabel validTurnTime, JFrame mainFrame) {
 		super(score,validTurnTime, mainFrame);
 		super.turnsTakenCounter.setDifficultyModeLabel("Medium Level");
+		
+		
 	}
 
 	@Override

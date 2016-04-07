@@ -88,6 +88,8 @@ public class MemoryGame implements ActionListener {
 			else if(e.getActionCommand().equals("Equal Pair Level")) newGame("medium");
 			else if(e.getActionCommand().equals("Same Rank Trio Level")) newGame("trio");
 			else if(e.getActionCommand().equals("Flush Level")) newGame("Flush Level");
+			else if(e.getActionCommand().equals("Straight Level"))newGame("Straight Level");
+			else if(e.getActionCommand().equals("Combo Level"))newGame("Combo level");
 			else if(e.getActionCommand().equals("How To Play")) showInstructions();
 			else if(e.getActionCommand().equals("About")) showAbout();
 			else if(e.getActionCommand().equals("Exit")) System.exit(0);
@@ -158,6 +160,19 @@ public class MemoryGame implements ActionListener {
 			this.difficulty = new FlushLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
 		
 		}
+		else if(difficultyMode.equalsIgnoreCase("Straight Level"))
+		{
+			this.scoreCounterLabel = new ScoreCounterLabel(25);
+			this.difficulty = new StraightLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
+		}
+		
+		else if(difficultyMode.equalsIgnoreCase("Combo Level"))
+		{
+			this.scoreCounterLabel = new ScoreCounterLabel(25);
+			this.difficulty = new ComboLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
+		}
+		
+		
 
 		else {
 			throw new RuntimeException("Illegal Game Level Detected");
