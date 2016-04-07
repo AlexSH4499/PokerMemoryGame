@@ -166,7 +166,8 @@ public abstract class GameLevel implements ActionListener
 	 * has occured. Checks the Card array for possible combinations, 
 	 * else, ends the current game and displays a message to player
 	 */
-	protected abstract boolean availableMoves();
+	//protected abstract boolean availableMoves(ArrayList<Card>c);
+	
 	protected boolean  gameOver(){
 
 		for (int i =0; i< this.grid.size();i++)

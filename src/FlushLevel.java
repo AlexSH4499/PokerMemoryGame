@@ -1,31 +1,27 @@
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class FlushLevel extends EqualPairLevel{
+public class FlushLevel extends GameLevel {
 
-	
+
 	protected FlushLevel(ScoreCounterLabel score,TurnsTakenCounterLabel validTurnTime, JFrame mainFrame) {
-		super(score,validTurnTime, mainFrame);
+		super(score, validTurnTime, 5 ,mainFrame);
 		super.turnsTakenCounter.setDifficultyModeLabel("Flush Level");
-		this.scoreLabel = score;
-		this.turnsTakenCounter = validTurnTime;
-		this.mainFrame = mainFrame;
-		this.cardsToTurnUp = 5;
-		this.cardsPerRow = 10;
-		this.rowsPerGrid = 5;
+		cardsToTurnUp = 5;
+		cardsPerRow = 10;
+		rowsPerGrid = 5;
 	}
 
 	@Override
 	protected void makeDeck() {
-		// In Trio level the grid consists of distinct cards, no repetitions
+		
 		ImageIcon cardIcon[] = this.loadCardIcons();
 
-	//back card
+		//back card
 		ImageIcon backIcon = cardIcon[TotalCardsPerDeck];
 
-		int cardsToAdd[] = new int[this.getRowsPerGrid() * this.getCardsPerRow()];
-		
-		for(int i = 0; i < (this.getRowsPerGrid() * this.getCardsPerRow()); i++)
+		int cardsToAdd[] = new int[getRowsPerGrid() * getCardsPerRow()];
+		for(int i = 0; i < (getRowsPerGrid() * getCardsPerRow()); i++)
 		{
 			cardsToAdd[i] = i;
 		}
@@ -34,7 +30,7 @@ public class FlushLevel extends EqualPairLevel{
 		this.randomizeIntArray(cardsToAdd);
 
 		// make each card object
- 		for(int i = 0; i < cardsToAdd.length; i++)
+		for(int i = 0; i < cardsToAdd.length; i++)
 		{
 			// number of the card, randomized
 			int num = cardsToAdd[i];
@@ -47,7 +43,6 @@ public class FlushLevel extends EqualPairLevel{
 
 	@Override
 	protected boolean addToTurnedCardsBuffer(Card card) {
-		
 		// add the card to the list
 		this.turnedCardsBuffer.add(card);
 		if(this.turnedCardsBuffer.size() == getCardsToTurnUp())
@@ -55,6 +50,7 @@ public class FlushLevel extends EqualPairLevel{
 			// We are uncovering the last card in this turn
 			// Record the player's turn
 			this.turnsTakenCounter.increment();
+			
 			// get the other card (which was already turned up)
 			Card otherCard1 = (Card) this.turnedCardsBuffer.get(0);
 			Card otherCard2 = (Card) this.turnedCardsBuffer.get(1);
@@ -62,14 +58,11 @@ public class FlushLevel extends EqualPairLevel{
 			Card otherCard4 = (Card) this.turnedCardsBuffer.get(3);
 			Card otherCard5 = (Card) this.turnedCardsBuffer.get(4);
 			
-			if((card.sameSuit(otherCard1) && (card.sameSuit(otherCard2)) 
-					&& (card.sameSuit(otherCard3))
-					&& (card.sameSuit(otherCard4))
-					&& (card.sameSuit(otherCard5)))) 
-			{
-				// Five cards match, so remove them from the list (they will remain face up)
+			if((card.sameSuit(otherCard1) && (card.sameSuit(otherCard2)) && (card.sameSuit(otherCard3)) && (card.sameSuit(otherCard4)) && (card.sameSuit(otherCard5)))){ 
+			
+				// Three cards match, so remove them from the list (they will remain face up)
 				this.turnedCardsBuffer.clear();
-				this.scoreLabel.addScore(700);//700 + sum of all ranks of cards
+				this.scoreLabel.addScore(100 + card.getNum() *3);//We need to fix this so we can multiply but card Rank not memory num
 			}
 			else 
 			{
@@ -77,7 +70,26 @@ public class FlushLevel extends EqualPairLevel{
 				this.turnDownTimer.start();
 				this.scoreLabel.addScore(-5);
 			}
-		}
+		
+		
+	}
 		return true;
+	}
+
+	@Override
+	protected boolean turnUp(Card card) {
+		// the card may be turned
+				if(this.turnedCardsBuffer.size() < getCardsToTurnUp()) 
+				{
+					return this.addToTurnedCardsBuffer(card);
+				}
+				// there are already the number of EasyMode (5 face up cards) in the turnedCardsBuffer
+				return false;
+	}
+
+	@Override
+	protected String getMode() {
+		// TODO Auto-generated method stub
+		return "FlushMode";
 	}
 }

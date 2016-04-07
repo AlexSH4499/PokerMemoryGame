@@ -107,11 +107,19 @@ public class EasyLevel extends GameLevel {
 				{
 					return true;
 				};
-				i++;
+				j++;
 			}
+			i++;
 		}
 		return false;
 	}
+
+//	@Override
+//	protected boolean availableMoves(ArrayList<Card> c) {
+//		// TODO Auto-generated method stub
+//		//super();
+//		return false;
+//	}
 }
 
 
