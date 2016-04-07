@@ -10,9 +10,9 @@ public class FlushLevel extends EqualPairLevel{
 		this.scoreLabel = score;
 		this.turnsTakenCounter = validTurnTime;
 		this.mainFrame = mainFrame;
-		cardsToTurnUp = 5;
-		cardsPerRow = 10;
-		rowsPerGrid = 5;
+		this.cardsToTurnUp = 5;
+		this.cardsPerRow = 10;
+		this.rowsPerGrid = 5;
 	}
 
 	@Override
@@ -23,9 +23,9 @@ public class FlushLevel extends EqualPairLevel{
 	//back card
 		ImageIcon backIcon = cardIcon[TotalCardsPerDeck];
 
-		int cardsToAdd[] = new int[getRowsPerGrid() * getCardsPerRow()];
+		int cardsToAdd[] = new int[this.getRowsPerGrid() * this.getCardsPerRow()];
 		
-		for(int i = 0; i < (getRowsPerGrid() * getCardsPerRow()); i++)
+		for(int i = 0; i < (this.getRowsPerGrid() * this.getCardsPerRow()); i++)
 		{
 			cardsToAdd[i] = i;
 		}
@@ -69,11 +69,13 @@ public class FlushLevel extends EqualPairLevel{
 			{
 				// Five cards match, so remove them from the list (they will remain face up)
 				this.turnedCardsBuffer.clear();
+				this.scoreLabel.addScore(700);//700 + sum of all ranks of cards
 			}
 			else 
 			{
 				// The cards do not match, so start the timer to turn them down
 				this.turnDownTimer.start();
+				this.scoreLabel.addScore(-5);
 			}
 		}
 		return true;

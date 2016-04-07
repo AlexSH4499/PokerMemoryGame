@@ -60,7 +60,7 @@ public class StraightLevel extends FlushLevel
 		this.turnedCardsBuffer.add(card);
 		
 		// there are two cards
-		if(this.turnedCardsBuffer.size() == getCardsToTurnUp()-1) 
+		if(this.turnedCardsBuffer.size() == getCardsToTurnUp()) 
 		{
 			// Were are turning up the last card
 			// record the player's turn

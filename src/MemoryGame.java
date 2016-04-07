@@ -234,7 +234,12 @@ public class MemoryGame implements ActionListener {
 						"is won when all cards are face up.\r\n"+
 						"\r\n"+
 						"Each time you flip two cards up, the turn counter will\r\n"+
-						"increase.  Try to win the game in the fewest number of turns!";
+						"increase.  Try to win the game in the fewest number of turns!"+
+						"\r\n"+
+						"Combo Level\r\n "+
+						"The game consists of a grid of distinct cards. At the start of the game,\r\n"+
+						"every card on the grid is facing upwards.The objective is to get the highest \r\n"+
+						" possible scoring hand";//Finish this later
 
 		JOptionPane.showMessageDialog(this.mainFrame, HOWTOPLAYTEXT
 				, "How To Play", JOptionPane.PLAIN_MESSAGE);

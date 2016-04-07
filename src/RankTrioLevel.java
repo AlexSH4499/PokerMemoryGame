@@ -58,11 +58,13 @@ public class RankTrioLevel extends EqualPairLevel {
 			if((card.getRank().equals(otherCard1.getRank())) && (card.getRank().equals(otherCard2.getRank()))) {
 				// Three cards match, so remove them from the list (they will remain face up)
 				this.turnedCardsBuffer.clear();
+				this.scoreLabel.addScore(100 + card.getNum() *3);//We need to fix this so we can multiply but card Rank not memory num
 			}
 			else 
 			{
 				// The cards do not match, so start the timer to turn them down
 				this.turnDownTimer.start();
+				this.scoreLabel.addScore(-5);
 			}
 		}
 		return true;

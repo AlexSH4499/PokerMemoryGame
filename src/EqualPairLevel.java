@@ -23,9 +23,16 @@ public class EqualPairLevel extends EasyLevel {
 			Card otherCard = (Card) this.turnedCardsBuffer.get(0);
 			// the cards match, so remove them from the list (they will remain face up)
 			if( otherCard.getNum() == card.getNum())
+			{
 				this.turnedCardsBuffer.clear();
+				this.scoreLabel.addScore(50);
+			}
 			// the cards do not match, so start the timer to turn them down
-			else this.turnDownTimer.start();
+			else
+				{
+					this.turnDownTimer.start();
+					this.scoreLabel.addScore(-5);
+				}
 		}
 		return true;
 	}
