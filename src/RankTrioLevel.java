@@ -107,6 +107,7 @@ public class RankTrioLevel extends EqualPairLevel {
 			{
 				// The cards do not match, so start the timer to turn them down
 				this.turnDownTimer.start();
+				//Decreases score when turn passes and the three cards didn't match
 				this.scoreLabel.addScore(-5);
 			}
 		}

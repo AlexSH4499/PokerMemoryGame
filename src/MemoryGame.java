@@ -159,11 +159,11 @@ public class MemoryGame implements ActionListener {
 			this.difficulty = new FlushLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
 		
 		}
-		else if(difficultyMode.equalsIgnoreCase("Straight Level"))
-		{
-			this.scoreCounterLabel = new ScoreCounterLabel(25);
-			this.difficulty = new StraightLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
-		}
+//		else if(difficultyMode.equalsIgnoreCase("Straight Level"))
+//		{
+//			this.scoreCounterLabel = new ScoreCounterLabel(25);
+//			this.difficulty = new StraightLevel(this.scoreCounterLabel,this.turnCounterLabel,this.mainFrame);
+//		}
 		
 		else if(difficultyMode.equalsIgnoreCase("Combo Level"))
 		{
@@ -236,10 +236,53 @@ public class MemoryGame implements ActionListener {
 						"Each time you flip two cards up, the turn counter will\r\n"+
 						"increase.  Try to win the game in the fewest number of turns!"+
 						"\r\n"+
-						"Combo Level\r\n "+
-						"The game consists of a grid of distinct cards. At the start of the game,\r\n"+
-						"every card on the grid is facing upwards.The objective is to get the highest \r\n"+
-						" possible scoring hand";//Finish this later
+						"Flush Level\r\n"+
+						"The game consists of a grid of distinct cards.  At the start of the game,\r\n"+
+						"every card is face down.  The object is to find five cards having the same suit T \r\n"+
+						"and turn them face up.\r\n"+
+						"\r\n"+
+						"Click on five cards to turn them face up. If the cards have the \r\n"+
+						"same suit, then you have discovered a flush.  The flush will remain\r\n"+
+						"turned up.  If the cards don't meet the condition, they will flip back\r\n"+
+						"over automatically after a short delay.  Continue flipping\r\n"+
+						"cards until you have discovered all of the pairs of cards.  The game\r\n"+
+						"is won when all cards are face up.\r\n"+
+						"\r\n"+
+						"Each time you flip five cards up, the turn counter will\r\n"+
+						"increase.  Try to win the game in the fewest number of turns!"+
+						"\r\n"+
+						"Straight Level\r\n"+
+						"The game consists of a grid of distinct cards.  At the start of the game,\r\n"+
+						"every card is face down.  The object is to find five cards in sequence  T \r\n"+
+						"with at least two distinct suits and turn them face up.\r\n"+
+						"\r\n"+
+						"Click on five cards to turn them face up. If the cards are \r\n"+
+						"in sequence and have at least 2 distinct suits, then you have discovered a straight. The straight will remain\r\n"+
+						"turned up.  If the cards don't meet the condition, they will flip back\r\n"+
+						"over automatically after a short delay.  Continue flipping\r\n"+
+						"cards until you have discovered all of the pairs of cards.  The game\r\n"+
+						"is won when all cards are face up.\r\n"+
+						"\r\n"+
+						"Each time you flip five cards up, the turn counter will\r\n"+
+						"increase.  Try to win the game in the fewest number of turns!"+
+						"\r\n"+
+						"Combo Level\r\n"+
+						"The game consists of a grid of distinct cards.  At the start of the game,\r\n"+
+						"every card is face down.  The object is to find five cards with the same suit, in sequence  T \r\n"+
+						"with at least two distinct suits or with at least two cards with the same rank,  and turn them face up.\r\n"+
+						"\r\n"+
+						"Click on five cards to turn them face up. If the cards have the same suit, then you have discovered a flush. \r\n"+
+						"If the cards are in sequence and have at least two distinct suits,  \r\n"+
+						"then you have discovered a straight. If you have at least two cards with the same rank, then you have discovered a unique.  \r\n"+
+						"The straight, flush or unique will remain turned up.  If the cards don't meet the condition, they will flip back\r\n"+
+						"over automatically after a short delay.  Continue flipping\r\n"+
+						"cards until you have discovered all of the pairs of cards.  The game\r\n"+
+						"is won when all cards are face up.\r\n"+
+						"\r\n"+
+						"Each time you flip five cards up, the turn counter will\r\n"+
+						"increase.  Try to win the game in the fewest number of turns!"+
+						"\r\n";
+						
 
 		JOptionPane.showMessageDialog(this.mainFrame, HOWTOPLAYTEXT
 				, "How To Play", JOptionPane.PLAIN_MESSAGE);

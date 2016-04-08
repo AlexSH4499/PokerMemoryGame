@@ -22,7 +22,7 @@ public class EqualPairLevel extends EasyLevel {
 			// get the other card (which was already turned up)
 			Card otherCard = (Card) this.turnedCardsBuffer.get(0);
 			// the cards match, so remove them from the list (they will remain face up)
-		//	if( otherCard.getNum() == card.getNum())
+			//	if( otherCard.getNum() == card.getNum())
 			if(otherCard.getRank() == card.getRank())	
 			{
 				this.turnedCardsBuffer.clear();
